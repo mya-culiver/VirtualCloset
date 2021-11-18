@@ -121,12 +121,6 @@ public class Accountsettings extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("Users");
         storageReference = getInstance().getReference(); // firebase storage reference
 
-        /* We have to get info of currently signed in user. We can get it using the user's email or uid
-            I'm gonna retrieve user detail using email
-          By Using orderbyChild query we will show the detail from a node
-          whose key named email has a value equal == to currently signed in email.
-          It will search all nodes, where the key matches it will get it's detail.
-         */
 
         Query query = databaseReference.orderByChild("email").equalTo(fUser.getEmail());
         query.addValueEventListener(new ValueEventListener() {
