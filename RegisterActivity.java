@@ -125,33 +125,10 @@ public class RegisterActivity extends AppCompatActivity {
                 // Set progress bar to visible while registration to firebase runs
                 progressBar.setVisibility(View.VISIBLE);
 
-                /*  if all fields are filled and Password matches Cnf Password and >= 6 char
-                    create user from Email and Pwd and incase it doesn't go through then let user know about
-                    registration error. Let user know if successful registration.
-                */
-
                 mFirebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            /* Took out for  https://www.youtube.com/watch?v=K3mcK5fUIns instead of putting this in the firestore database
-                            userID = mFirebaseAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fstore.collection("users").document(userID);
-                            Map<String, Object> user = new HashMap<>();
-                            user.put("fName", userN);
-                            user.put("email", email);
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "onSuccess: user Profile is created for " + userID);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "onFailure " + e.toString());
-                                }
-                            });
-                             */
 
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             // Get user email and uid from auth
